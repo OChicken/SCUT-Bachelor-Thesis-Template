@@ -1,0 +1,283 @@
+%!mode::"TeX:UTF-8"
+\documentclass[a4paper]{article}
+\usepackage[fntef]{ctexcap} % Required for the Chinese and the corresponding section setting
+\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry} % Required for the Word-like page
+\usepackage{fancyhdr} % Required for custom headers
+\usepackage{setspace} % Required for the space setting
+\usepackage{titlesec} % Required for the Chapter & Section fonts adjustment
+\usepackage{titletoc} % Required for the Content fonts adjustment
+\usepackage{lastpage} % Required to determine the last page for the footer
+\usepackage{extramarks} % Required for headers and footers
+
+\usepackage{graphicx} % Required to insert images
+\usepackage{listings} % Required for insertion of code
+\usepackage{indentfirst} % Required for the indent before each paragraph
+\usepackage[bookmarks=true,colorlinks=true,linkcolor=black,anchorcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
+%\usepackage{cite} % Required for the ref and cite
+\usepackage[usenames,dvipsnames]{color} % Required for custom colors
+\usepackage{courier} % Required for the courier font
+\usepackage[font=footnotesize,tableposition=top]{caption} % Required for the footnote size captions of figures and tables
+\usepackage[numbers,sort&compress]{natbib}
+%----------------------------------------------------------------------------------------
+%   Math Display
+%----------------------------------------------------------------------------------------
+\usepackage{bm} % Required for the bold in math display
+\usepackage{amsmath} % Required for the math display
+\usepackage{amssymb} % Required for the math display
+\usepackage{amsbsy} % Required for the math display
+\usepackage{cancel} % Required for the cancel symbol in math display
+\usepackage{amsthm} % Required for the theorem edition
+\usepackage{array} % Required for the array in math display
+\usepackage{ifthen} % Required for the conditional commands
+\usepackage{tikz, tikzscale} % Required for drawing the flow chart
+\usetikzlibrary{shapes.geometric, arrows,calc,positioning,decorations.pathreplacing,bending}
+
+
+%----------------------------------------------------------------------------------------
+%   Superscript citation
+%----------------------------------------------------------------------------------------
+\newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+%----------------------------------------------------------------------------------------
+%   Upright d in integrate
+%----------------------------------------------------------------------------------------
+\newcommand{\ud}{\mathrm{d}} 
+
+%----------------------------------------------------------------------------------------
+%   Section related equations' number
+%----------------------------------------------------------------------------------------
+\makeatletter
+\@addtoreset{equation}{section}
+\makeatother
+\renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
+
+%----------------------------------------------------------------------------------------
+%   Flow chart setting
+%----------------------------------------------------------------------------------------
+%   Define the fundamental shapes of the flow chart
+\tikzstyle{StartEnd} = [rectangle, rounded corners, minimum width = 2cm, minimum height=0.6cm,text centered, draw = black, fill = red!40]
+\tikzstyle{ioFunction} = [trapezium, trapezium left angle=70, trapezium right angle=110, minimum width=2cm, minimum height=0.6cm, text centered, draw=black, fill = blue!40]
+\tikzstyle{process} = [rectangle, minimum width=2cm, minimum height=0.6cm, text centered, draw=black, fill = yellow!50]
+\tikzstyle{decision} = [diamond, minimum height=0.8cm,  aspect = 5, text centered, draw=black, fill = green!30]
+\tikzstyle{defineRangeSearch} = [rectangle, minimum width=2cm, minimum height=0.6cm, text centered, draw=black, fill = green!30]
+%   Define the arrows' shape of the flow chart
+\tikzstyle{arrow} = [->,>=stealth]
+
+%----------------------------------------------------------------------------------------
+%   Chapter & Section fonts adjustment
+%----------------------------------------------------------------------------------------
+\CTEXsetup[name={第,章},number={\chinese{section}},format={\centering\zihao{-2}\bfseries}]{section}
+\titleformat{\subsection}{\zihao{-3}\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\zihao{4}\bfseries}{\thesubsubsection}{1em}{}
+\CTEXsetup[,format={\raggedright\bfseries\zihao{-4}}]{paragraph}
+%----------------------------------------------------------------------------------------
+%   Content fonts adjustment
+%----------------------------------------------------------------------------------------
+\renewcommand\contentsname{目\quad\quad 录}%设置目录
+\titlecontents{section}[0em]{\zihao{4}\bfseries}{\contentspush{\thecontentslabel \hspace{0.7em}}}
+              {}{\titlerule*[5pt]{.}\contentspage}
+\titlecontents{subsection}[2.2em]{\zihao{-4}\songti}{\contentspush{\thecontentslabel\hspace{0.7em}}}
+              {}{\titlerule*[5pt]{.}\contentspage}
+\titlecontents{subsubsection}[3.9em]{\zihao{-4}\songti}{\contentspush{\thecontentslabel\hspace{0.7em}}}
+              {}{\titlerule*[5pt]{.}\contentspage}
+\titlespacing*{\subsection} {0pt}{1ex}{1ex}%调节标题与上下文间距
+\titlespacing*{\subsubsection} {0pt}{1ex}{1ex}
+
+%----------------------------------------------------------------------------------------
+%   Page header & Page footer setting
+%----------------------------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\sectionmark}[1]{\markboth{第\chinese{section} 章{\color{white}.} #1}{}}
+\fancyhead[C]{\CJKfamily{song}华南理工大学学士学位论文}
+\fancyhead[CO]{\CJKfamily{song}\leftmark}
+\fancyfoot[C]{\thepage}
+
+\begin{document}
+%----------------------------------------------------------------------------------------
+%   Cover
+%----------------------------------------------------------------------------------------
+\thispagestyle{empty}
+\begin{figure}[ht]
+\centering
+\includegraphics[height=2.75cm]{title.png}
+\end{figure}
+\begin{center}
+\zihao{0}
+\textbf{本科毕业论文}
+\end{center}
+\nopagebreak[4]
+\begin{center}
+\zihao{1}
+\ \\
+\end{center}
+\nopagebreak[4]
+\begin{center}
+\zihao{2}
+\textbf{AMS-02}%这里替换成你的论文题目
+\end{center}
+\nopagebreak[4]
+\begin{center}
+\zihao{1}
+\ \\
+\ \\
+\ \\
+\end{center}
+\nopagebreak[4]
+\begin{spacing}{1.8}
+\begin{center}
+\zihao{-3}
+\textbf{学\quad\quad 院}\quad\underline{\quad\quad\textbf{学院}\quad\quad}\\
+\textbf{专\quad\quad 业}\quad\underline{\quad\quad\quad\textbf{物理学}\quad\quad\quad}\\
+\textbf{学生姓名}\quad\underline{\quad\quad\quad\quad\textbf{O鸡}\quad\quad\quad\quad}\\
+\textbf{学生学号}\quad\underline{\quad\quad\textbf{2052}\quad\quad}\\
+\textbf{指导老师}\quad\underline{\quad\quad\textbf{长者,\ 长者}\quad\quad}\\
+\textbf{提交日期}\quad\underline{\quad\textbf{2000年}\ \ \textbf{0月}\ \ \textbf{00日}\quad}
+\end{center}
+\end{spacing}
+\pagebreak[4]
+
+%----------------------------------------------------------------------------------------
+%   Chinese Abstract
+%----------------------------------------------------------------------------------------
+\setcounter{page}{1}
+\pagenumbering{Roman}
+\begin{center}
+\addcontentsline{toc}{section}{摘要}
+ \zihao{-2}
+ \bfseries
+ 摘\quad 要
+\end{center}
+\thispagestyle{plain}
+\begin{spacing}{1.5}
+\zihao{-4}
+                                  %下文删掉打自己的摘要
+炔烃和叠氮化合物的点击化学反应，有着快速、百分百原子利用率、产物高选择性等众多优点，
+ 被誉为点击化学中的精华。基于此反应拓展而来的点击聚合反应，迅速在高分子材料领域获得了了广泛关注和应用。
+
+……
+
+我们还尝试了采用不同单体，在最优条件下进行反应，均获得了高分子产物。表明了该反应体系的普适性。\\
+\ \\
+\textbf{关键词：}多变量系统；预测控制；环境试验设备
+\end{spacing}
+\pagebreak[4]
+\thispagestyle{plain}
+
+%----------------------------------------------------------------------------------------
+%   English Abstract
+%----------------------------------------------------------------------------------------
+\begin{center}
+\addcontentsline{toc}{section}{Abstract}%将“XXX加入目录中”
+ \zihao{-2}
+ Abstract
+\end{center}
+\begin{spacing}{1.5}
+ \zihao{-4}                      %把下面括号内的英文换成你的摘要
+ Artificial Neuron Network (ANN) simulates human being's brain function and build the network structure. Convolutional Neural Network (CNN) have many advantage, such as……
+
+    (2) This paper introduces the common pretreatment method of image, such as collecting image, normalization, graying and binarization. And apply these to the handwritten numeral recognition experiment and handwritten numerals writer recognition experiments.
+\\
+\ 
+\\
+ \textbf{Keywords：}Writer recognition；Convolutional Neural Network；Handwritten character recognition
+\end{spacing}
+\pagebreak[4]
+
+
+
+%=============生成目录====================%
+\thispagestyle{plain}
+\begin{spacing}{1.5}
+\addcontentsline{toc}{section}{目录}
+\tableofcontents
+\end{spacing}
+\thispagestyle{plain}
+\pagebreak[4]
+
+
+
+
+%正文设定
+\setboolean{@twoside}{true}
+\begin{spacing}{1.5}
+%\songti
+\zihao{-4}
+\setcounter{page}{1}
+\pagenumbering{arabic}
+
+%下面开始打你的正文
+
+%----------------------------------------------------------------------------------------
+%   绪论
+%----------------------------------------------------------------------------------------
+\section{绪论}
+
+\subsection{电子}
+正负电子
+
+
+
+\pagebreak[4]%换页
+
+
+\section{数据}
+
+
+
+\pagebreak[4]%换页
+\appendix
+\section{Markov Chain}
+一个理论值$X^H(\vec{\theta})$是参数列$\vec{\theta}$的函数, $\vec{\theta}$是$M$维空间的矢量:
+\begin{equation}
+\vec{\theta}=[\theta_1, \theta_2, ..., \theta_M]
+\end{equation}
+
+
+
+\pagebreak[4]%换页
+
+%----------------------------------------------------------------------------------------
+%   CERN
+%----------------------------------------------------------------------------------------
+
+\section{CERN}
+了.
+
+
+%正文内容到此为止
+\end{spacing}
+\setboolean{@twoside}{false}
+%正文结束
+\fancyhead[C]{\CJKfamily{song}华南理工大学学士学位论文}
+\fancyhead[CO]{\CJKfamily{song}\leftmark}
+
+
+%插入参考文献
+\pagebreak[4]
+\begin{thebibliography}{99}
+\addcontentsline{toc}{section}{参考文献}
+\zihao{-4}
+%\tnewroman
+
+%----------------------------------------------------------------------------------------
+%   绪论
+%----------------------------------------------------------------------------------------
+
+\bibitem{Oh-My-God Particles} \href{https://www.universetoday.com/86490/astronomy-without-a-telescope-oh-my-god-particles/}{Astronomy Without A Telescope - Oh-My-God Particles - Universe Today}
+
+
+\end{thebibliography}
+
+
+\pagebreak[4]
+%=====================致谢=============================%
+\thispagestyle{empty}
+\section*{致谢}
+\addcontentsline{toc}{section}{致谢}%将“摘要加入目录中”
+\begin{spacing}{1.5}
+\zihao{-4}
+\songti
+Time flies very fast, 很惭愧, 其实我只做了一点微小的工作.
+\end{spacing}
+\end{document}
