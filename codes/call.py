@@ -1,0 +1,1 @@
+call("./DRAGON ./examples/run_2D_BC.xml", shell=True)
