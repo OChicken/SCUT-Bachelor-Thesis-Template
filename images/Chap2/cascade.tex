@@ -1,0 +1,29 @@
+% texlive2017, xelatex
+% author: Ma Seoyin, 2014 Applied Physics, SCUT
+\documentclass{standalone}
+\usepackage{amsmath}
+\usepackage{tikz, tikzscale}
+\usetikzlibrary{arrows,shapes,positioning}
+\usetikzlibrary{snakes}
+\usetikzlibrary{decorations.markings}
+\tikzstyle arrowstyle=[scale=1]
+\tikzstyle fermion=[postaction={decorate,decoration={markings, mark=at position 0.5 with {\arrow[arrowstyle]{latex}} }}] %or style stealth
+\tikzstyle gauge_boson=[postaction={decorate, decoration={snake, segment length=5mm, amplitude=15mm}}]
+\begin{document}
+\begin{tikzpicture}
+\node [] at (1, 0.25) {$\gamma$};
+\draw [decorate, decoration={snake, segment length=2.5mm, amplitude=0.5mm}] (0,0) -- (2, 0);
+\node [] at (2.965925826289068, 0.5088190451025207) {$e^+$};
+\draw [fermion] (2, 0) -- (3.9318516525781366, 0.5176380902050415);
+\node [] at (5.431851652578136, 0.7676380902050415) {$e^+$};
+\draw [fermion] (3.9318516525781366, 0.5176380902050415) -- (5.9318516525781366, 0.5176380902050415);
+\node [] at (4.797877056362575, 1.2676380902050415) {$\gamma$};
+\draw [decorate, decoration={snake, segment length=2.5mm, amplitude=0.5mm}] (3.9318516525781366, 0.5176380902050415) -- (5.663902460147014, 1.5176380902050415);
+\node [] at (2.965925826289068, -0.5088190451025207) {$e^-$};
+\draw [fermion] (2, 0) -- (3.9318516525781366, -0.5176380902050415);
+\node [] at (5.431851652578136, -0.7676380902050415) {$e^-$};
+\draw [fermion] (3.9318516525781366, -0.5176380902050415) -- (5.9318516525781366, -0.5176380902050415);
+\node [] at (4.797877056362575, -1.2676380902050415) {$\gamma$};
+\draw [decorate, decoration={snake, segment length=2.5mm, amplitude=0.5mm}] (3.9318516525781366, -0.5176380902050415) -- (5.663902460147014, -1.5176380902050415);
+\end{tikzpicture}
+\end{document}
