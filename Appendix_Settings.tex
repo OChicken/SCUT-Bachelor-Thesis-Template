@@ -1,0 +1,27 @@
+%----------------------------------------------------------------------------------------
+%   APPENDIX
+%----------------------------------------------------------------------------------------
+\appendix
+%----------------------------------------------------------------------------------------
+%   Appendix's Section fonts adjustment
+%----------------------------------------------------------------------------------------
+\CTEXsetup[name={附录},number={\Alph{section}}, format={\centering\zihao{-2}\bfseries}]{section}
+\titleformat{\subsection}{\zihao{-3}\bfseries}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\zihao{4}\bfseries}{\thesubsubsection}{1em}{}
+\CTEXsetup[,format={\raggedright\bfseries\zihao{-4}}]{paragraph}
+%----------------------------------------------------------------------------------------
+%   Page header & Page footer setting
+%----------------------------------------------------------------------------------------
+\pagestyle{fancy}
+\fancyhf{}
+\renewcommand{\sectionmark}[1]{\markboth{附录\Alph{section}\ \ #1}{}}
+\fancyhead[C]{\CJKfamily{song}华南理工大学学士学位论文}
+\fancyhead[CO]{\CJKfamily{song}\leftmark}
+\fancyfoot[C]{\thepage}
+%----------------------------------------------------------------------------------------
+%   Section related equations' number
+%----------------------------------------------------------------------------------------
+\makeatletter
+\@addtoreset{equation}{section}
+\makeatother
+\renewcommand{\theequation}{\Alph{section}.\arabic{equation}}
