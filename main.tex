@@ -4,6 +4,39 @@
 \documentclass[a4paper]{article}
 \usepackage{template}
 
+\usepackage{ctex}
+\usepackage[backend=biber,style=gb7714-2015,gbpub=false]{biblatex}
+\addbibresource[location=local]{template.bib}
+\DeclareNameAlias{default}{family-given/given-family}
+\DeclareNameFormat{family-given/given-family}{%
+  \nameparts{#1}%
+  \ifcase\value{uniquename}%
+    \usebibmacro{name:family}
+      {\namepartfamily}
+      {\namepartgiven}
+      {\namepartprefix}
+      {\namepartsuffix}%
+  \or
+    \ifuseprefix
+      {\usebibmacro{name:given-family}
+        {\namepartfamily}
+        {\namepartgiveni}
+        {\namepartprefix}
+        {\namepartsuffixi}}
+      {\usebibmacro{name:given-family}
+        {\namepartfamily}
+        {\namepartgiveni}
+        {\namepartprefixi}
+        {\namepartsuffixi}}%
+  \or
+    \usebibmacro{name:given-family}
+      {\namepartfamily}
+      {\namepartgiven}
+      {\namepartprefix}
+      {\namepartsuffix}%
+  \fi
+  \usebibmacro{name:andothers}}
+
 \begin{document}
 \input{Cover}
 \input{Abstract}
@@ -48,12 +81,10 @@
 %----------------------------------------------------------------------------------------
 %   参考文献
 %----------------------------------------------------------------------------------------
-\bibliographystyle{plain}
 \addcontentsline{toc}{section}{参考文献}
 \zihao{-4}
-\bibliography{template}
+\printbibliography
 \pagebreak[4]
-
 %----------------------------------------------------------------------------------------
 %   ACKNOWLEDGEMENT
 %----------------------------------------------------------------------------------------
