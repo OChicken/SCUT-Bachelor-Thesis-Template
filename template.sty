@@ -1,12 +1,17 @@
-% This file contains the core required packages in LaTeX which 
-% can be used in various document class z.B. article, report,
-% CV and motivation letters
 \ProvidesPackage{template}
 
-\usepackage[fntef]{ctexcap} % Required for the Chinese and the corresponding section setting
-\usepackage[top=2.5cm, bottom=2.5cm, left=2.5cm, right=2.5cm]{geometry} % Required for the Word-like page
+\usepackage{ctex}  % 中文支持
+
+\usepackage[
+    top=2.5cm,
+    bottom=2.5cm,
+    left=2.5cm,
+    right=2.5cm
+]{geometry} % 页边距布局
+
 \usepackage{fancyhdr} % Required for custom headers
 \usepackage{setspace} % Required for the space setting
+\usepackage{zhnumber}
 \usepackage{titlesec} % Required for the Chapter & Section fonts adjustment
 \usepackage{titletoc} % Required for the Content fonts adjustment
 \usepackage[toc,page]{appendix} % Required for the appendix environment
@@ -21,13 +26,11 @@
 \usepackage{listings} % Required for insertion of code
 \usepackage{indentfirst} % Required for the indent before each paragraph
 \usepackage[bookmarks=true,colorlinks=true,linkcolor=black,anchorcolor=blue,citecolor=blue,urlcolor=blue]{hyperref}
-%\usepackage{cite} % Required for the ref and cite
+
 \usepackage[usenames,dvipsnames]{color} % Required for custom colors
-\usepackage{courier} % Required for the courier font
 \usepackage[font=footnotesize,tableposition=top]{caption} % Required for the footnote size captions of figures and tables
-\usepackage[numbers,sort&compress]{natbib}
 %----------------------------------------------------------------------------------------
-%   Math Display
+%   数学宏包
 %----------------------------------------------------------------------------------------
 \usepackage{bm} % Required for the bold in math display
 \usepackage{amsmath} % Required for the math display
@@ -41,7 +44,17 @@
 %----------------------------------------------------------------------------------------
 %   Superscript citation
 %----------------------------------------------------------------------------------------
+% 参考文献相关，需要更新
+\usepackage{gbt7714}
+\bibliographystyle{gbt7714-numerical}
+
+
 \newcommand{\upcite}[1]{\textsuperscript{\textsuperscript{\cite{#1}}}}
+
+\setmainfont{Times New Roman} % 常规英文字体
+\setsansfont{Arial} % 非衬线字体
+\setmonofont{Consolas} % 打字机字体，代码字体
+\setCJKmainfont[AutoFakeBold=true]{SimSun}%正文字体
 
 %----------------------------------------------------------------------------------------
 %   Upright d in integrate
@@ -79,11 +92,16 @@ stepnumber=1 % Line numbers go in steps of 1
 }
 % Creates a new command to include a Python script, the first parameter is the filename of the script (without .py), the second parameter is the caption
 \newcommand{\pythonscript}[2]{
-\begin{itemize}
-\begin{spacing}{1.0}
-\item[]\lstinputlisting[caption=#2,label=#1]{#1.py}
-\end{spacing}
-\end{itemize}
+    \begin{itemize}
+    \begin{spacing}{1.0}
+        \item[]\lstinputlisting[
+        caption=#2,
+        label=#1,
+        gobble=2,
+        numbers=left
+        ]{#1.py}
+        \end{spacing}
+    \end{itemize}
 }
 
 %----------------------------------------------------------------------------------------
@@ -95,18 +113,29 @@ stepnumber=1 % Line numbers go in steps of 1
 \renewcommand{\theequation}{\arabic{section}.\arabic{equation}}
 
 %----------------------------------------------------------------------------------------
-%   Chapter & Section fonts adjustment
+%   章节标题格式调整
 %----------------------------------------------------------------------------------------
-\CTEXsetup[name={第,章},number={\chinese{section}},format={\centering\zihao{-2}\bfseries}]{section}
+% section
+\titleformat{\section}{\centering\zihao{-2}\bfseries}{第\,\zhnumber{\thesection}\,章}{1em}{}
+% subsection
 \titleformat{\subsection}{\zihao{-3}\bfseries}{\thesubsection}{1em}{}
+% subsubsection
 \titleformat{\subsubsection}{\zihao{4}\bfseries}{\thesubsubsection}{1em}{}
-\CTEXsetup[,format={\raggedright\bfseries\zihao{-4}}]{paragraph}
+
+
+
+% 重新定义paragraph样式
+\titlespacing*{\paragraph}{0pt}{3.25ex plus 1ex minus .2ex}{0.75ex plus .2ex}
+\titleformat{\paragraph}[hang]{\normalfont\normalsize\bfseries}{\theparagraph}{1em}{\raggedright}
+
 %----------------------------------------------------------------------------------------
-%   Content fonts adjustment
+%   目录格式调整
 %----------------------------------------------------------------------------------------
 \renewcommand\contentsname{目\quad\quad 录} % Setup contents
-\titlecontents{section}[0em]{\zihao{4}\bfseries}{\contentspush{\thecontentslabel \hspace{0.7em}}}
+\titlecontents{section}[0em]{\zihao{4}\bfseries}
+{\contentspush{第\,\zhnumber{\thecontentslabel}\,章\hspace{1em}}}
               {}{\titlerule*[5pt]{.}\contentspage}
+
 \titlecontents{subsection}[2.2em]{\zihao{-4}\songti}{\contentspush{\thecontentslabel\hspace{0.7em}}}
               {}{\titlerule*[5pt]{.}\contentspage}
 \titlecontents{subsubsection}[3.9em]{\zihao{-4}\songti}{\contentspush{\thecontentslabel\hspace{0.7em}}}
@@ -120,6 +149,6 @@ stepnumber=1 % Line numbers go in steps of 1
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\sectionmark}[1]{\markboth{第\chinese{section} 章{\color{white}.} #1}{}}
-\fancyhead[C]{\CJKfamily{song}华南理工大学学士学位论文}
-\fancyhead[CO]{\CJKfamily{song}\leftmark}
+\fancyhead[C]{\songti{华南理工大学学士学位论文}}
+\fancyhead[CO]{\songti\leftmark}
 \fancyfoot[C]{\thepage}

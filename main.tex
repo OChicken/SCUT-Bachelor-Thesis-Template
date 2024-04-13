@@ -1,9 +1,11 @@
-%!mode::"TeX:UTF-8"
+% !TeX encoding = UTF-8
+% !TEX program = xelatex
+
 % texlive2017, xelatex
 % author: Ma Seoyin, 2014 Applied Physics, SCUT
 \documentclass[a4paper]{article}
-\usepackage{template}
 
+\usepackage{template}
 \begin{document}
 \input{Cover}
 \input{Abstract}
@@ -36,7 +38,6 @@
 \input{Chapter5_Experiments_and_Results}
 \input{Chapter6_Conclusions_and_Expectations}
 
-
 \input{Appendix_Settings}
 \input{Appendix_A}
 \input{Appendix_B}
@@ -48,7 +49,7 @@
 %----------------------------------------------------------------------------------------
 %   参考文献
 %----------------------------------------------------------------------------------------
-\bibliographystyle{plain}
+% \bibliographystyle{plain}
 \addcontentsline{toc}{section}{参考文献}
 \zihao{-4}
 \bibliography{template}
@@ -57,8 +58,8 @@
 %----------------------------------------------------------------------------------------
 %   ACKNOWLEDGEMENT
 %----------------------------------------------------------------------------------------
-\fancyhead[C]{\CJKfamily{song}华南理工大学学士学位论文}
-\fancyhead[CO]{\CJKfamily{song}致谢}
+\fancyhead[C]{\songti{华南理工大学学士学位论文}}
+\fancyhead[CO]{\songti{致谢}}
 \begin{spacing}{1.5}
 \input{Acknowledgement}
 \end{spacing}

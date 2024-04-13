@@ -1,26 +1,33 @@
-%----------------------------------------------------------------------------------------
+ %----------------------------------------------------------------------------------------
 %   APPENDIX
 %----------------------------------------------------------------------------------------
 \appendix
-%----------------------------------------------------------------------------------------
-%   Appendix's Section fonts adjustment
-%----------------------------------------------------------------------------------------
-\CTEXsetup[name={附录},number={\Alph{section}}, format={\centering\zihao{-2}\bfseries}]{section}
+
+% 附录标题样式调整
+\titleformat{\section}{\centering\zihao{-2}\bfseries}{附录\Alph{section}}{1em}{}
 \titleformat{\subsection}{\zihao{-3}\bfseries}{\thesubsection}{1em}{}
 \titleformat{\subsubsection}{\zihao{4}\bfseries}{\thesubsubsection}{1em}{}
-\CTEXsetup[,format={\raggedright\bfseries\zihao{-4}}]{paragraph}
-%----------------------------------------------------------------------------------------
-%   Page header & Page footer setting
-%----------------------------------------------------------------------------------------
+
+\titlecontents{section}[0em]{\zihao{4}\bfseries}
+{\contentspush{{附录 \thecontentslabel}\hspace{1em}}}
+              {}{\titlerule*[5pt]{.}\contentspage}
+
+\titlecontents{subsection}[2.2em]{\zihao{-4}\songti}{\contentspush{\thecontentslabel\hspace{0.7em}}}
+              {}{\titlerule*[5pt]{.}\contentspage}
+\titlecontents{subsubsection}[3.9em]{\zihao{-4}\songti}{\contentspush{\thecontentslabel\hspace{0.7em}}}
+              {}{\titlerule*[5pt]{.}\contentspage}
+\titlespacing*{\subsection} {0pt}{1ex}{1ex} % Adjust the space between title and context
+\titlespacing*{\subsubsection} {0pt}{1ex}{1ex}
+
+% 保留原有页眉页脚设置，与正文保持一致
 \pagestyle{fancy}
 \fancyhf{}
 \renewcommand{\sectionmark}[1]{\markboth{附录\Alph{section}\ \ #1}{}}
-\fancyhead[C]{\CJKfamily{song}华南理工大学学士学位论文}
-\fancyhead[CO]{\CJKfamily{song}\leftmark}
+\fancyhead[C]{\songti{华南理工大学学士学位论文}}
+\fancyhead[CO]{\songti\leftmark}
 \fancyfoot[C]{\thepage}
-%----------------------------------------------------------------------------------------
-%   Section related equations' number
-%----------------------------------------------------------------------------------------
+
+% 保留原有公式编号设置，与正文保持一致
 \makeatletter
 \@addtoreset{equation}{section}
 \makeatother
